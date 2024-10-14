@@ -1,0 +1,125 @@
+[gd_scene load_steps=2 format=3 uid="uid://bntkeavdjegi4"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_v65g7"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v65g7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -149.0
+offset_right = 125.0
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MenuTitle" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="PlayerName" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Player Name"
+alignment = 1
+expand_to_text_length = true
+
+[node name="SinglePlayerButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Single Player"
+
+[node name="HostMultiplayerButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host Multiplayer (Soon)"
+
+[node name="JoinMultiplayerButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join Multiplayer (Soon)"
+
+[node name="StartMultiplayer" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Multiplayer Start (Soon)"
+
+[node name="MultiplayerIP" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Multiplayer Ip Here"
+alignment = 1
+expand_to_text_length = true
+clear_button_enabled = true
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="PlayerNameError" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -279.0
+offset_top = -124.0
+offset_right = 279.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerNameError"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayerNameError/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "Error: You must enter a player name to play"
+horizontal_alignment = 1
+
+[node name="NameErrorButton" type="Button" parent="PlayerNameError/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0.505882, 0, 1)
+text = "Press to close this"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SinglePlayerButton" to="." method="_on_single_player_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HostMultiplayerButton" to="." method="_on_host_multiplayer_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/JoinMultiplayerButton" to="." method="_on_join_multiplayer_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartMultiplayer" to="." method="_on_start_multiplayer_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PlayerNameError/VBoxContainer/NameErrorButton" to="." method="_on_name_error_button_pressed"]
