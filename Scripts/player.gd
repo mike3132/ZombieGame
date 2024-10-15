@@ -73,3 +73,4 @@ func play_shoot_effects():
 	animationPlayer.play("shoot")
 	muzzleFlash.restart()
 	muzzleFlash.emitting = true
+	
