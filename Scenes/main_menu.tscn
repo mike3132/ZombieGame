@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bntkeavdjegi4"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_v65g7"]
-[ext_resource type="Texture2D" uid="uid://c8nk8sgvfnq1e" path="res://Assets/main_menu_background.jpg" id="2_viqv5"]
-[ext_resource type="AudioStream" uid="uid://cubspwpncdesm" path="res://Assets/main_menu_sounds.mp3" id="3_0dkpw"]
-[ext_resource type="AudioStream" uid="uid://bcj8b8xkn7ql" path="res://Assets/start_game_sound.mp3" id="4_weebl"]
+[ext_resource type="Texture2D" uid="uid://c8nk8sgvfnq1e" path="res://Assets/main_menu/main_menu_background.jpg" id="2_viqv5"]
+[ext_resource type="AudioStream" uid="uid://cubspwpncdesm" path="res://Assets/main_menu/main_menu_sounds.mp3" id="3_0dkpw"]
+[ext_resource type="AudioStream" uid="uid://bcj8b8xkn7ql" path="res://Assets/main_menu/start_game_sound.mp3" id="4_weebl"]
 
 [sub_resource type="Gradient" id="Gradient_co2e6"]
 colors = PackedColorArray(1, 0, 0, 1, 0.635294, 0, 0, 1)

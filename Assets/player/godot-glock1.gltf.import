@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d6h2e6nvhg42"
-path="res://.godot/imported/tree-test01.gltf-e6661cdfbf713684dfa5684ec8508991.scn"
+uid="uid://bsf55hwnggcf8"
+path="res://.godot/imported/godot-glock1.gltf-b7739b1fa40166f9b87c58e6412b325e.scn"
 
 [deps]
 
-source_file="res://Assets/tree-test01.gltf"
-dest_files=["res://.godot/imported/tree-test01.gltf-e6661cdfbf713684dfa5684ec8508991.scn"]
+source_file="res://Assets/player/godot-glock1.gltf"
+dest_files=["res://.godot/imported/godot-glock1.gltf-b7739b1fa40166f9b87c58e6412b325e.scn"]
 
 [params]
 

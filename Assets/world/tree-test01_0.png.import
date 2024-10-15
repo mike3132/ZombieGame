@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c66rvutkhq13t"
-path.s3tc="res://.godot/imported/godot-glock1_0.png-a1be74a3ee54d21668709b96341aa162.s3tc.ctex"
+uid="uid://dask2tl3tla23"
+path.s3tc="res://.godot/imported/tree-test01_0.png-4864fa76be7434d3fbe6de4dc20a6ff5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "80d49140c8c2e14cda87f4386b98d847"
+"md5": "ec7bbc6a99c8566d25ab7dfeb3dc1f90"
 }
 
 [deps]
 
-source_file="res://Assets/godot-glock1_0.png"
-dest_files=["res://.godot/imported/godot-glock1_0.png-a1be74a3ee54d21668709b96341aa162.s3tc.ctex"]
+source_file="res://Assets/world/tree-test01_0.png"
+dest_files=["res://.godot/imported/tree-test01_0.png-4864fa76be7434d3fbe6de4dc20a6ff5.s3tc.ctex"]
 
 [params]
 

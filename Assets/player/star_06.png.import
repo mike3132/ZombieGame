@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dask2tl3tla23"
-path.s3tc="res://.godot/imported/tree-test01_0.png-a717c3bac6f330d133a04cb3819d8f26.s3tc.ctex"
+uid="uid://n4sx3b7t7mdm"
+path.s3tc="res://.godot/imported/star_06.png-3203fe5d3d41c0250a46f66171fa0b24.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "ec7bbc6a99c8566d25ab7dfeb3dc1f90"
-}
 
 [deps]
 
-source_file="res://Assets/tree-test01_0.png"
-dest_files=["res://.godot/imported/tree-test01_0.png-a717c3bac6f330d133a04cb3819d8f26.s3tc.ctex"]
+source_file="res://Assets/player/star_06.png"
+dest_files=["res://.godot/imported/star_06.png-3203fe5d3d41c0250a46f66171fa0b24.s3tc.ctex"]
 
 [params]
 
