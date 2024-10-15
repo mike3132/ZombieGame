@@ -14,4 +14,4 @@ func _ready():
 			if spawn.name == str(index):
 				currentPlayer.global_position = spawn.global_position
 		index += 1
-# github commit test
+# github passkey test
