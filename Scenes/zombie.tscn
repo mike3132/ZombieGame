@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpkiwc7kidaj"]
+
+[ext_resource type="Script" path="res://Scripts/zombie.gd" id="1_wb1ur"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_00pw2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kraja"]
+
+[node name="Zombie" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_wb1ur")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_00pw2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_kraja")
+
+[node name="Sight" type="RayCast3D" parent="." groups=["zombies"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.658743, 0)
+target_position = Vector3(0, -10, 0)
+
+[node name="Engaged" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[connection signal="timeout" from="Engaged" to="." method="_on_engaged_timeout"]
