@@ -106,4 +106,3 @@ func play_shoot_effects():
 	
 	#muzzleFlash.restart()
 	#muzzleFlash.emitting = true
-# Blue's Message
