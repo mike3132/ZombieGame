@@ -106,3 +106,7 @@ func play_shoot_effects():
 	
 	#muzzleFlash.restart()
 	#muzzleFlash.emitting = true
+<<<<<<< HEAD
+=======
+ # Testing
+>>>>>>> 950c05bcd8b1af800b0f701329e15cd26f95283f
