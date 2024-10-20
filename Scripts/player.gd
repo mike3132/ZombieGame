@@ -106,5 +106,3 @@ func play_shoot_effects():
 	
 	#muzzleFlash.restart()
 	#muzzleFlash.emitting = true
- # Testing
-# Blue was here
