@@ -1,0 +1,203 @@
+[gd_scene load_steps=10 format=3 uid="uid://bntkeavdjegi4"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_v65g7"]
+[ext_resource type="Texture2D" uid="uid://c8nk8sgvfnq1e" path="res://Assets/main_menu/main_menu_background.jpg" id="2_viqv5"]
+[ext_resource type="AudioStream" uid="uid://cubspwpncdesm" path="res://Assets/main_menu/main_menu_sounds.mp3" id="3_0dkpw"]
+[ext_resource type="AudioStream" uid="uid://bcj8b8xkn7ql" path="res://Assets/main_menu/start_game_sound.mp3" id="4_weebl"]
+
+[sub_resource type="Gradient" id="Gradient_co2e6"]
+colors = PackedColorArray(1, 0, 0, 1, 0.635294, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qcxxf"]
+gradient = SubResource("Gradient_co2e6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vl58h"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1, 0)
+gravity = Vector3(0, 980, 0)
+color_ramp = SubResource("GradientTexture1D_qcxxf")
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="Gradient" id="Gradient_ii8gq"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ggbj8"]
+gradient = SubResource("Gradient_ii8gq")
+width = 5
+height = 5
+fill_from = Vector2(0.524272, 1)
+fill_to = Vector2(0.538835, 0)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v65g7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_viqv5")
+
+[node name="Menu" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -149.0
+offset_right = 125.0
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 2
+
+[node name="MenuTitle" type="Label" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.854902, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.854902, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "The Night Crawls"
+horizontal_alignment = 1
+
+[node name="PlayerName" type="LineEdit" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/clear_button_color_pressed = Color(0, 0.505882, 0, 1)
+theme_override_colors/clear_button_color = Color(0.980392, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.853361, 0.455805, 0, 1)
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Name The Dead"
+alignment = 1
+expand_to_text_length = true
+clear_button_enabled = true
+
+[node name="SinglePlayerButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.635294, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.635294, 0, 0, 1)
+theme_override_colors/font_color = Color(0.854902, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Enter The Night Alone"
+
+[node name="HostMultiplayerButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.635294, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.635294, 0, 0, 1)
+theme_override_colors/font_color = Color(0.854902, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Host The Carnage (Coming Soon)"
+
+[node name="JoinMultiplayerButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.635294, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.635294, 0, 0, 1)
+theme_override_colors/font_color = Color(0.854902, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Join The Carnage (Coming Soon)"
+
+[node name="StartMultiplayer" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.635294, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.635294, 0, 0, 1)
+theme_override_colors/font_color = Color(0.854902, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Start The Carnage (Coming Soon)"
+
+[node name="MultiplayerIP" type="LineEdit" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/clear_button_color_pressed = Color(0, 0.505882, 0, 1)
+theme_override_colors/clear_button_color = Color(0.980392, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.853361, 0.455805, 0, 1)
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Enter Carnage Ip"
+alignment = 1
+expand_to_text_length = true
+clear_button_enabled = true
+
+[node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.635294, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.635294, 0, 0, 1)
+theme_override_colors/font_color = Color(0.854902, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Run Away"
+
+[node name="PlayerNameError" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -279.0
+offset_top = -124.0
+offset_right = 279.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerNameError"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayerNameError/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "Error: You must enter a player name to play"
+horizontal_alignment = 1
+
+[node name="NameErrorButton" type="Button" parent="PlayerNameError/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.854902, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.635294, 0, 0, 1)
+text = "Press to close this"
+
+[node name="BloodRain" type="GPUParticles2D" parent="."]
+position = Vector2(605, -63)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_vl58h")
+texture = SubResource("GradientTexture2D_ggbj8")
+lifetime = 1.75
+fixed_fps = 0
+collision_base_size = 25.0
+draw_order = 0
+
+[node name="MainMenu_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0dkpw")
+parameters/looping = true
+
+[node name="StartGame_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_weebl")
+
+[connection signal="pressed" from="Menu/VBoxContainer/SinglePlayerButton" to="." method="_on_single_player_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/HostMultiplayerButton" to="." method="_on_host_multiplayer_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/JoinMultiplayerButton" to="." method="_on_join_multiplayer_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/StartMultiplayer" to="." method="_on_start_multiplayer_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PlayerNameError/VBoxContainer/NameErrorButton" to="." method="_on_name_error_button_pressed"]
