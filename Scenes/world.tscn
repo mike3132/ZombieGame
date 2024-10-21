@@ -19,11 +19,11 @@ sky = SubResource("Sky_atgg7")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0c4m"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tm7o"]
 albedo_color = Color(0, 1, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_d1qko"]
-material = SubResource("StandardMaterial3D_s0c4m")
+material = SubResource("StandardMaterial3D_7tm7o")
 size = Vector3(5, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2y0i"]

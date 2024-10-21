@@ -1,27 +1,38 @@
 extends CharacterBody3D
 
+@export var mouse_sensitivity = 0.2
+
 @onready var playerAnimations = $PlayerAnimations
 @onready var camera = $Camera3D
 @onready var weaponAnimation = $Camera3D/glock/GlockAnimations
 @onready var firstPersonAnimation = $Camera3D/FpAnimations
 @onready var firstPersonHands = $Camera3D/FpHands
 @onready var gunRayCast = $Camera3D/GunRaycast
-#@onready var muzzleFlash = $Camera3D/Pistol/MuzzleFlash
+
+# Debug hud
+@onready var debughud = $PlayerHud/DebugMenu
+@onready var playerVelocity = $PlayerHud/DebugMenu/DebugHud/PlayerVelocity
+@onready var projectVelocity = $PlayerHud/DebugMenu/DebugHud/ProjectVelocity
+@onready var playerLocation = $PlayerHud/DebugMenu/DebugHud/PlayerLocation
 
 var bullet = load("res://Scenes/bullet.tscn")
 var instance
 
-
-const WALK_SPEED = 5.0
-const RUN_SPEED = 10.0
-const JUMP_VELOCITY = 4.5
+const walk_speed = 5.0
+const jump_velocity = 4.5
+const max_speed = 6.0
+const max_speed_air = 5.5
+const ground_acceleration = 35
+const air_acceleration = 26
+const ground_friction = 3.5
 
 var syncPosition = Vector3(0,0,0)
-var running = false
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # Multiplayer code for later use
 #func _enter_tree():
 #	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+
 
 func _ready():
 	# Multiplayer code for later use
@@ -29,10 +40,7 @@ func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true
-
-
-func _input(event):
-	running = true if Input.is_action_pressed("run") else false
+	
 
 
 func _unhandled_input(event):
@@ -49,36 +57,39 @@ func _unhandled_input(event):
 		
 	if Input.is_action_just_pressed("shoot"):
 		play_shoot_effects.rpc()
+	
+	if Input.is_action_just_pressed("debughud"):
+		if debughud.visible:
+			debughud.hide()
+		else:
+			debughud.show()
 
 
 func _physics_process(delta):
 	# Multiplayer code for later use
 	#if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		
 	syncPosition = global_position
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	var speed = RUN_SPEED if running else WALK_SPEED
-		
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+	
+	if is_on_floor():
+		velocity = accelerate(direction, delta, ground_acceleration, max_speed)
+		var speed = velocity.length()
+		if speed != 0:
+			var drop = speed * ground_friction * delta
+			velocity *= max(speed - drop, 0) / speed
+		# Handle jump.
+		if Input.is_action_pressed("jump") and is_on_floor():
+			velocity.y = jump_velocity
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		velocity = accelerate(direction, delta, air_acceleration, max_speed_air)
+		velocity.y -= gravity * delta
 	
 	playerAnimations.set("parameters/conditions/idle", input_dir == Vector2.ZERO)
-	playerAnimations.set("parameters/conditions/walk", input_dir != Vector2.ZERO and not running)
-	playerAnimations.set("parameters/conditions/run", input_dir != Vector2.ZERO and running)
+	playerAnimations.set("parameters/conditions/walk", input_dir != Vector2.ZERO)
 
 	if weaponAnimation.current_animation == "shoot":
 		pass
@@ -88,10 +99,27 @@ func _physics_process(delta):
 		weaponAnimation.play("idle")
 		firstPersonAnimation.play("idle")
 	
+	playerLocation.text = "Player Location: " + str(global_position)
+	
 	move_and_slide()
 	#else:
 	#	global_position = global_position.lerp(syncPosition, .5)
 		
+
+
+func accelerate(direction, delta, acceleration_type, max_velocity):
+	var project_velocity = velocity.dot(direction)
+	var acceleration_velocity = acceleration_type * delta
+	
+	if (project_velocity + acceleration_velocity > max_velocity):
+		acceleration_velocity = max_velocity - project_velocity
+	
+	playerVelocity.text = "Player Velocity: " + str(velocity.length())
+	projectVelocity.text = "Project Velocity: " + str(project_velocity)
+	
+	return velocity + (direction * acceleration_velocity)
+
+
 
 @rpc("any_peer", "call_local")
 func play_shoot_effects():
@@ -103,7 +131,3 @@ func play_shoot_effects():
 	instance.position = gunRayCast.global_position
 	instance.transform.basis = gunRayCast.global_transform.basis
 	get_parent().add_child(instance)
-	
-	#muzzleFlash.restart()
-	#muzzleFlash.emitting = true
-	# Branch Testing
